@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surveying Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="surveyinghub.css">
+</head>
+<body>
+
+    <div class="content-wrapper">
+        <div class="banner-header">   
+            <div class="header">
+                <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/90/NU_shield.svg" 
+                    alt="NU Shield Logo"
+                    width="100"
+                    height="100"
+                />
+                <div class="header-text">
+                    <h1 class="title">SURVEYING HUB</h1>
+                    <h2 class="nu-title">National University of the Philippines</h2>
+                </div>
+            </div>   
+        </div>
+
+        <main class="main-content">
+            <div class="welcome-section">
+                <h1 class="welcome-title">Welcome to Surveying Hub</h1>
+                <p class="welcome-text">Your All-in-One Surveying Companion</p>
+            </div>
+
+            <div class="description animate-up">
+                <h1 class="description-title">What is Surveying Hub?</h1>
+                <p class="description-text">Surveying Hub is made by <strong>Joshua Dytianquin 👨‍💻</strong>, a 2nd-year BSCpE student at NU Fairview. Surveying Hub bridges the gap between classroom theory and real-world application for engineering students and trainees. Built as a multi-functional toolkit, the platform eliminates tedious manual formulas by offering instantaneous coordinate plotting, geometric calculations, and universal unit adjustments on a single streamlined interface.</p>
+            </div>
+
+            <div class="description animate-up">
+                <h1 class="description-title">Target Users</h1>
+                <p class="description-text">Surveying Hub is an all-in-one platform tailored for early-year Civil Engineering students and industry trainees. By integrating instant coordinate-based plotting with automatic area, volume, and unit conversion calculators, the platform eliminates tedious manual computations and the need for formula memorization. Featuring a streamlined, intuitive interface, it serves as both an educational resource for rapid estimation and a practical tool for real-world measurements.</p>
+            </div>
+
+            <div class="card-feature animate-up">
+                <div class="feature-badge">FEATURES</div>
+                <h1 class="feature-main-title">Features of Surveying Hub</h1>
+
+                <details class="feature-dropdown">
+                    <summary>
+                        <div class="summary-left">
+                            <span class="feature-number">1</span>
+                            <span class="feature-name">Smart Lot Analyzer</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="feature-answer">
+                        <p>Allows users to input 3 or more dynamic (x, y) coordinate pairs to instantly generate a visual, plotted sketch of the polygon or lot shape. The built-in results panel systematically outputs the computed total area, total perimeter, and a comprehensive coordinates summary list for quick cross-checking and validation.</p>
+                    </div>
+                </details>
+
+                <details class="feature-dropdown">
+                    <summary>
+                        <div class="summary-left">
+                            <span class="feature-number">2</span>
+                            <span class="feature-name">Basic Area Calculator</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="feature-answer">
+                        <p>Provides rapid area assessments for standard geometric boundaries. Users can seamlessly calculate dimensions for shapes including Circles, Triangles, Rectangles, Squares, and Trapezoids by entering specific variables adapted directly to each configuration.</p>
+                    </div>
+                </details>
+
+                <details class="feature-dropdown">
+                    <summary>
+                        <div class="summary-left">
+                            <span class="feature-number">3</span>
+                            <span class="feature-name">Volume Calculator</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="feature-answer">
+                        <p>Computes three-dimensional measurements for essential geometric structures. Depending on the selected item—such as a Cube, Rectangular Prism, Cylinder, Sphere, or Cone—the program prompts users for layout parameters to calculate total volume capacities instantly.</p>
+                    </div>
+                </details>
+
+                <details class="feature-dropdown">
+                    <summary>
+                        <div class="summary-left">
+                            <span class="feature-number">4</span>
+                            <span class="feature-name">Basic Unit Conversion</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="feature-answer">
+                        <p>A specialized processing module designed for surveying-related units. Users select their required data matrix parameters to translate values accurately across fundamental engineering scales without executing manual calculations.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="analyzer-section-wrapper animate-up">
+                <h2 class="workspace-main-title"><i class="fa-solid fa-chart-area"></i> Smart Lot Analyzer</h2>
+                
+                <div class="analyzer-workspace">
+                    <div class="workspace-left">
+                        <div class="canvas-container">
+                            <div class="canvas-header">
+                                <span><i class="fa-solid fa-compass-drafting"></i> Interactive Plotter Canvas</span>
+                                <span class="canvas-hint">Scroll to Zoom | Drag to Pan</span>
+                            </div>
+                            <canvas id="plotterCanvas" class="canvas-mock"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="workspace-right">
+                        <div class="control-panel">
+                            <h2 class="panel-section-title">Coordinate Table Inputs</h2>
+                            
+                            <div class="coord-row-header">
+                                <span>Point</span>
+                                <span>X Value</span>
+                                <span>Y Value</span>
+                                <span>Action</span>
+                            </div>
+
+                            <div id="coordinateContainer" class="coordinate-rows-container">
+                                <div class="coord-input-row">
+                                    <span class="point-index">P1</span>
+                                    <input type="number" value="10" class="coord-field coord-x">
+                                    <input type="number" value="10" class="coord-field coord-y">
+                                    <button type="button" class="delete-row-btn" disabled><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                                <div class="coord-input-row">
+                                    <span class="point-index">P2</span>
+                                    <input type="number" value="60" class="coord-field coord-x">
+                                    <input type="number" value="20" class="coord-field coord-y">
+                                    <button type="button" class="delete-row-btn" disabled><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                                <div class="coord-input-row">
+                                    <span class="point-index">P3</span>
+                                    <input type="number" value="40" class="coord-field coord-x">
+                                    <input type="number" value="70" class="coord-field coord-y">
+                                    <button type="button" class="delete-row-btn" disabled><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons-group">
+                                <button type="button" id="addPointBtn" class="add-point-btn"><i class="fa-solid fa-plus"></i> Add Point</button>
+                                <button type="button" id="calculateBtn" class="calculate-action-btn"><i class="fa-solid fa-calculator"></i> Calculate Lot</button>
+                            </div>
+                        </div>
+
+                        <div class="results-panel">
+                            <h2 class="panel-section-title">Computed Lot Outputs</h2>
+                            <div class="output-grid">
+                                <div class="output-card">
+                                    <span class="output-label">Total Area</span>
+                                    <div class="output-value-wrapper">
+                                        <span id="areaOutput" class="output-number">0.00</span>
+                                        <span class="output-unit">sq. units</span>
+                                    </div>
+                                </div>
+                                <div class="output-card">
+                                    <span class="output-label">Total Perimeter</span>
+                                    <div class="output-value-wrapper">
+                                        <span id="perimeterOutput" class="output-number">0.00</span>
+                                        <span class="output-unit">units</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculators-section-wrapper animate-up">
+                <div class="calculator-column-block">
+                    <h2 class="workspace-main-title"><i class="fa-solid fa-vector-square"></i> Basic Area Calculator</h2>
+                    <div class="calc-box">
+                        <div class="selector-wrapper">
+                            <label class="input-label-tag">Select Shape</label>
+                            <select id="areaShapeSelector" class="calc-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="circle">Circle</option>
+                                <option value="triangle">Triangle</option>
+                                <option value="trapezoid">Trapezoid</option>
+                            </select>
+                        </div>
+
+                        <div id="areaInputsContainer" class="dynamic-inputs-container"></div>
+
+                        <div class="selector-wrapper">
+                            <label class="input-label-tag">Output Unit Conversion</label>
+                            <select id="areaUnitSelector" class="calc-select">
+                                <option value="sq_m">Square Meters (sq. m)</option>
+                                <option value="sq_cm">Square Centimeters (sq. cm)</option>
+                                <option value="sq_ft">Square Feet (sq. ft)</option>
+                                <option value="hectare">Hectares (ha)</option>
+                                <option value="acre">Acres (ac)</option>
+                            </select>
+                        </div>
+
+                        <button type="button" id="btnCalcArea" class="compute-box-btn"><i class="fa-solid fa-square-poll-vertical"></i> Compute Area</button>
+
+                        <div class="calc-results-display">
+                            <span class="calc-result-lbl">Calculated Area Output</span>
+                            <div class="calc-result-val-block">
+                                <span id="lblAreaResult" class="calc-result-num">0.00</span>
+                                <span id="lblAreaUnit" class="calc-result-unit">sq. m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-column-block">
+                    <h2 class="workspace-main-title"><i class="fa-solid fa-cube"></i> Volume Calculator</h2>
+                    <div class="calc-box">
+                        <div class="selector-wrapper">
+                            <label class="input-label-tag">Select 3D Shape</label>
+                            <select id="volumeShapeSelector" class="calc-select">
+                                <option value="cube">Cube</option>
+                                <option value="prism">Rectangular Prism</option>
+                                <option value="cylinder">Cylinder</option>
+                                <option value="sphere">Sphere</option>
+                                <option value="cone">Cone</option>
+                            </select>
+                        </div>
+
+                        <div id="volumeInputsContainer" class="dynamic-inputs-container"></div>
+
+                        <div class="selector-wrapper">
+                            <label class="input-label-tag">Output Unit Conversion</label>
+                            <select id="volumeUnitSelector" class="calc-select">
+                                <option value="cu_m">Cubic Meters (cu. m)</option>
+                                <option value="cu_cm">Cubic Centimeters (cu. cm)</option>
+                                <option value="cu_ft">Cubic Feet (cu. ft)</option>
+                                <option value="liter">Liters (L)</option>
+                                <option value="gallon">Gallons (gal)</option>
+                            </select>
+                        </div>
+
+                        <button type="button" id="btnCalcVolume" class="compute-box-btn"><i class="fa-solid fa-cube"></i> Compute Volume</button>
+
+                        <div class="calc-results-display">
+                            <span class="calc-result-lbl">Calculated Volume Output</span>
+                            <div class="calc-result-val-block">
+                                <span id="lblVolumeResult" class="calc-result-num">0.00</span>
+                                <span id="lblVolumeUnit" class="calc-result-unit">cu. m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description text-white-border animate-up">
+                <h1 class="description-title">Special Acknowledgement</h1>
+                <p class="description-text no-border-bottom">Surveying Hub would not have been possible without the brilliant minds of my Civil Engineering friends: <strong>Castro, Celpo, Delos Reyes, Hindap, and Pangilinan</strong>, who came up with the original concept and layout requirements for this tool. Their real-world insights, collaborative spirit, and dedication to improving engineering workflows provided the inspiration needed to transform a textbook challenge into an interactive, digital platform. Thank you for making this vision a reality!</p>
+            </div>
+        </main>
+
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-main">
+            
+            <div class="brand-block">
+                <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/90/NU_shield.svg" 
+                    alt="NU Shield Logo"
+                    width="100"
+                    height="100"
+                />
+                <div class="title-footer">
+                    <h1 class="footer-title">SURVEYING</h1>
+                    <h1 class="footer-title">HUB</h1>
+                </div>
+            </div>
+                
+            <div class="about-prog">
+                <h2 class="footer-about">ABOUT</h2>
+                <p class="about-text">Surveying Hub is an all-in-one educational and practical tool designed to simplify fundamental engineering tasks by providing interactive calculations for lot analysis, area, volume, and unit conversions.</p>
+            </div>
+
+            <div class="contact-section">
+                <h3 class="contact">CONTACT</h3>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>NU Fairview, Quezon City</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+63 9 1693 4036</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>joshuadytianquin@gmail.com</span>
+                    </li>
+                    <li>
+                        <span>Mon - Fri: 8:00 AM - 5:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Joshua Dytianquin. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="surveyinghub.js"></script>
+            
+</body>
+</html>
